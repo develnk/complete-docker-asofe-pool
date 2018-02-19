@@ -1,0 +1,4 @@
+*.rdb
+./asofe/data/asofe/*
+./asofe/data/asofe-params/*
+*.key

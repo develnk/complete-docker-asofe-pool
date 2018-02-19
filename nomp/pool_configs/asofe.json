@@ -1,0 +1,70 @@
+{
+    "logLevel": "debug",
+    "logColors": true,
+
+    "enabled": true,
+    "coin": "asofe.json",
+
+    "address": "t1dHNY2f3bMQoBgaG7PD28QWRYR6zCrrD93",
+    "_comment_address": "a transparent address to send coinbase rewards to and to transfer to zAddress.",
+
+    "zAddress": "zcfD1YNLsWiw6aVgmjSAa3f2r6SftKTKu1txs4feywuN8NixWdt2eKSetuaU3G9iXQj5Udfr4uHLMCuAB6QZ812dFqYa14v",
+    "_comment_zAddress": "a private address used to send coins to tAddress.",
+
+    "tAddress": "t1Kg2rc8ou52tFJHbiAD5NzQcRHgVq1u4v7",
+    "_comment_tAddress": "transparent address used to send payments, make this a different address, otherwise payments will not send",
+
+    "invalidAddress":"t1LU8KEW1odFnkGYSuMpumkjzxkgFLrqxvm",
+    "_comment_invalidAddress": "Invalid addresses will be converted to the above",
+
+    "walletInterval": 2.5,
+
+    "rewardRecipients": {
+    },
+
+    "tlsOptions": {
+        "enabled": false,
+        "serverKey":"",
+        "serverCert":"",
+        "ca":""
+    },
+
+    "paymentProcessing": {
+        "enabled": true,
+        "paymentMode": "prop",
+        "_comment_paymentMode":"prop, pplnt",
+        "paymentInterval": 5,
+        "minimumPayment": 10000,
+        "maxBlocksPerPayment": 1,
+        "daemon": {
+            "host": "asofe.com",
+            "port": 5555,
+            "user": "user",
+            "password": "password"
+        }
+    },
+
+    "ports": {
+        "3032": {
+            "tls":false,
+            "diff": 1,
+            "varDiff": {
+                "minDiff": 0.1,
+                "maxDiff": 16,
+                "targetTime": 15,
+                "retargetTime": 60,
+                "variancePercent": 30
+            }
+        }
+    },
+
+    "daemons": [
+        {
+            "host": "asofe.com",
+            "port": 5555,
+            "user": "user",
+            "password": "password"
+        }
+    ]
+}
+

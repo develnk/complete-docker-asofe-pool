@@ -1,0 +1,50 @@
+version: '3.4'
+services:
+  asofe:
+    image: develnk/docker-asofe
+    volumes:
+      - ./asofe/data/asofe:/root/.asofe
+      - ./asofe/data/asofe-params:/root/.asofe-params
+      - ./asofe/asofe.conf:/root/.asofe/asofe.conf
+      - ./asofe/cli.js:/bin/cli.js
+    networks:
+      asofe-net:
+        ipv4_address: 172.25.0.101
+    restart: always
+
+  asofe_pool:
+    image: develnk/docker-asofe-pool
+    container_name: asofe-pool
+    ports:
+      - "80:80"
+      - "3032:3032"
+    volumes:
+      - ./nomp/config.json:/asofe_pool/config.json
+      - ./nomp/pool_configs:/asofe_pool/pool_configs
+    links:
+      - redis
+      - asofe:asofe.com
+    networks:
+      asofe-net:
+        ipv4_address: 172.25.0.102
+    depends_on:
+      - asofe
+      - redis
+    restart: always
+
+  redis:
+    image: redis:4-alpine
+    container_name: redis-pool
+    volumes:
+      - ./redis/data:/data
+    networks:
+      asofe-net:
+        ipv4_address: 172.25.0.103
+    restart: always
+
+networks:
+  asofe-net:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.25.0.0/24
